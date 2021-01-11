@@ -1,3 +1,3 @@
 <?php
-echo "teste 02";
+echo "escrevendo pelo clone";
 ?>
