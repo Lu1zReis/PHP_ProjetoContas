@@ -1,3 +1,3 @@
 # Contas
- Teste
-Escrevendo pelo linux
+ Projeto de manuseamento de contas e orçamentos.
+ Versionando pelo Linux e Windows
