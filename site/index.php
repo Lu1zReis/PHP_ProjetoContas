@@ -8,7 +8,7 @@ endif;
 
 <html>
 <head>
-<title>Pagamento</title
+<title>Pagamento</title>
 </head>
 <body>
 
@@ -38,8 +38,10 @@ endif;
 		<?php
 			$sql = "SELECT * FROM dados";
 			$resultado = mysqli_query($connect, $sql);
+			$valor = 0;
 			while($dados = mysqli_fetch_array($resultado)):
 				$dados['data'] = strtotime($dados['data']);
+				$valor = $valor + $dados['valor'];
 		?>
 			<tr>
 				<td><?php echo date('d/m/Y', $dados['data']); ?></td>
@@ -55,8 +57,8 @@ endif;
 				<form action="ação/adicionar.php" method="POST">
 					<td><button type="submit" name="btn-adicionar">adicionar</button></td>
 				</form>
-				<td align="center"> - </td>
-				<td align="center"> - </td>
+				<td align="center"> Valor total: </td>
+				<td align="center"><?php echo $valor; ?></td>
 				<td align="center"> - </td>
 			</tr>
 		</tfoot>
