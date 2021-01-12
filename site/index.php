@@ -2,8 +2,10 @@
 require_once 'ação/db_connect.php';
 session_start();
 if(isset($_SESSION['adicionar'])):
-	echo $_SESSION['adicionar'];
+	echo $_SESSION['adicionar']."<br>";
 endif;
+session_unset();
+session_destroy();
 ?>
 
 <html>
