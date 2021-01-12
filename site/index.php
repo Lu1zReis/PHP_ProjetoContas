@@ -1,6 +1,9 @@
 <?php
+require_once 'ação/db_connect.php';
 session_start();
-
+if(isset($_SESSION['adicionar'])):
+	echo $_SESSION['adicionar'];
+endif;
 ?>
 
 <html>
@@ -32,17 +35,24 @@ session_start();
 		</thead>
 
 		<tbody>
+		<?php
+			$sql = "SELECT * FROM dados";
+			$resultado = mysqli_query($connect, $sql);
+			while($dados = mysqli_fetch_array($resultado)):
+				$dados['data'] = strtotime($dados['data']);
+		?>
 			<tr>
-				<td>16/01/2021</td>
-				<td>Pagamento do cartão</td>
-				<td>1500.50</td>
+				<td><?php echo date('d/m/Y', $dados['data']); ?></td>
+				<td><?php echo $dados['conta']; ?></td>
+				<td><?php echo $dados['valor']; ?></td>
 				<td><a href="">editar</a> - <a href="">excluir</a>
 			</tr>
+		<?php endwhile; ?>
 		</tbody>
 
 		<tfoot>
 			<tr>
-				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+				<form action="ação/adicionar.php" method="POST">
 					<td><button type="submit" name="btn-adicionar">adicionar</button></td>
 				</form>
 				<td align="center"> - </td>
