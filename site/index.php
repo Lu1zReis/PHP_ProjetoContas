@@ -32,6 +32,7 @@ session_destroy();
 
 <center>
 	<h1>Contas</h1>
+	<hr>
 	<table>
 		<thead>
 			<tr>
