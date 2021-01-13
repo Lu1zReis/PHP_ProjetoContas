@@ -32,4 +32,8 @@ if(isset($_POST['btn-editar'])):
 		header('Location: ../index.php');
 	endif;
 endif;
+if(isset($_POST['btn-cancelar'])):
+		$_SESSION['msg'] = "Ação cancelada";
+		header('Location: ../index.php');
+endif;	
 ?>

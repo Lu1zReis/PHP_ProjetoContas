@@ -32,6 +32,7 @@ endif;
 			</tr>
 			<tr>
 				<td><button type="submit" name="btn-editar">Atualizar</button><td>
+				<td><button type="submit" name="btn-cancelar">Cancelar</button><td>
 			</tr>
 		</form>
 	</table>
