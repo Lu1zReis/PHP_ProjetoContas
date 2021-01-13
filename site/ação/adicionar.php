@@ -27,10 +27,10 @@ if(isset($_POST['btn-criar'])):
 		// se estiver tudo certo nos dados inseridos, vamos enviar ao banco de dados
 		$sql = "INSERT INTO dados (data, conta, valor) VALUES ('$data', '$nome', '$valor')";
 		if(mysqli_query($connect, $sql)):
-			$_SESSION['adicionar'] = "Valor adicionado com sucesso";
+			$_SESSION['msg'] = "Valor adicionado com sucesso";
 			header('Location: ../index.php');
 		else:
-			$_SESSION['adicionar'] = "Erro ao cadastrar valor";
+			$_SESSION['msg'] = "Erro ao cadastrar valor";
 			header('Location: ../index.php');
 		endif;
 	endif;
@@ -38,7 +38,7 @@ if(isset($_POST['btn-criar'])):
 endif;
 // se o usuário querer cancelar a ação
 if(isset($_POST['btn-cancelar'])):
-	$_SESSION['adicionar'] = "cancelado o novo cadastro";
+	$_SESSION['msg'] = "cancelado o novo cadastro";
 	header('Location: ../index.php');
 endif;
 ?>

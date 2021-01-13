@@ -5,8 +5,8 @@ require_once 'ação/db_connect.php';
 echo "Data atual: ".date('d/m/Y')."<br>";
 // restante do trecho de código para mostrar msg na tela para o usuário 
 session_start();
-if(isset($_SESSION['adicionar'])):
-	echo $_SESSION['adicionar']."<br>";
+if(isset($_SESSION['msg'])):
+	echo $_SESSION['msg']."<br>";
 endif;
 
 session_unset();
@@ -56,7 +56,7 @@ session_destroy();
 				<td><?php echo date('d/m/Y', $dados['data']); ?></td>
 				<td><?php echo $dados['conta']; ?></td>
 				<td><?php echo $dados['valor']; ?></td>
-				<td><a href="ação/editar.php?id=<?php echo $dados['id']; ?>">editar</a> - <a href="">excluir</a></td>
+				<td><a href="ação/editar.php?id=<?php echo $dados['id']; ?>">editar</a> - <a href="ação/excluir.php?id=<?php echo $dados['id'] ?>">excluir</a></td>
 			</tr>
 		<?php endwhile; // Terminando o looping?>
 		</tbody>
