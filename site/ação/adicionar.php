@@ -16,12 +16,13 @@ if(isset($_POST['btn-criar'])):
 	if(empty($valor)):
 		$erros[] = "Por favor, adicione um valor";
 	endif;
-
+	// algoritmo que vai perceber se há erros
 	if(!empty($erros)):
 		foreach($erros as $erro):
 			echo "<li>$erro</li>";
 		endforeach;
 	else:
+		// se estiver tudo certo nos dados inseridos, vamos enviar ao banco de dados
 		$sql = "INSERT INTO dados (data, conta, valor) VALUES ('$data', '$nome', '$valor')";
 		if(mysqli_query($connect, $sql)):
 			$_SESSION['adicionar'] = "Valor adicionado com sucesso";
@@ -32,6 +33,11 @@ if(isset($_POST['btn-criar'])):
 		endif;
 	endif;
 
+endif;
+// se o usuário querer cancelar a ação
+if(isset($_POST['btn-cancelar'])):
+	$_SESSION['adicionar'] = "cancelado o novo cadastro";
+	header('Location: ../index.php');
 endif;
 ?>
 
@@ -56,6 +62,7 @@ endif;
 		</tr>
 		<tr>
 				<td><input type="submit" name="btn-criar"></td>
+				<td><button type="submit" name="btn-cancelar">cancelar</button></td>
 			</form>
 		</tr>
 	</table>
