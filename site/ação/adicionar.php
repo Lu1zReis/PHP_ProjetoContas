@@ -2,7 +2,9 @@
 session_start();
 require_once 'db_connect.php';
 if(isset($_POST['btn-criar'])):
-	$erros = array();
+	$erros = array(); // variavel que vai conter os erros
+
+	// Limpando os dados passados pela função 'mysqli_escape_string'
 	$data = mysqli_escape_string($connect, $_POST['data']);
 	$nome = mysqli_escape_string($connect, $_POST['nome']);
 	$valor = mysqli_escape_string($connect, $_POST['valor']);
