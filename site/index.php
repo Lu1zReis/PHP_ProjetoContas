@@ -3,15 +3,6 @@
 require_once 'ação/db_connect.php';
 // mostrando a data atual
 echo "Data atual: ".date('d/m/Y')."<br>";
-// restante do trecho de código para mostrar msg na tela para o usuário 
-session_start();
-if(isset($_SESSION['msg'])):
-	echo $_SESSION['msg']."<br>";
-endif;
-
-session_unset();
-session_destroy();
-
 ?>
 
 <html>
@@ -77,4 +68,14 @@ session_destroy();
 </body>
 </html>
 
+<?php
+// restante do trecho de código para mostrar msg na tela para o usuário 
+session_start();
+if(isset($_SESSION['msg'])):
+	echo "<li>".$_SESSION['msg']."</li>";
+endif;
 
+session_unset();
+session_destroy();
+
+?>
