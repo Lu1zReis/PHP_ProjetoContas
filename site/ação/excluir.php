@@ -6,7 +6,7 @@ require_once 'db_connect.php';
 if(isset($_GET['id'])):
 	if(isset($_POST['btn-excluir'])):
 		$delete = $_POST['escolha'];
-		if($delete == "op2"):
+		if($delete == "op2" or $delete == ""):
 			$_SESSION['msg'] = "Ação cancelada";
 			header('Location: ../index.php');
 		else:
