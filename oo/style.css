@@ -1,0 +1,48 @@
+#main {
+	text-align: center;
+	margin-bottom: 10%;
+}
+
+#me {
+	margin-top: 15%;
+	margin-right: 40%;
+	margin-left: 40%;
+	background-color: purple;
+	border-radius: 15px;
+	text-align: center;
+	height: 45px;
+	font: 35px Courier;
+	color: white;
+}
+
+#dad {
+	margin-top: 15%;
+	margin-right: 40%;
+	margin-left: 40%;
+	background-color: blue;
+	border-radius: 15px;
+	text-align: center;
+	height: 45px;
+	font: 35px Courier;
+	color: white;
+}
+
+#mom {
+	margin-top: 15%;
+	margin-right: 40%;
+	margin-left: 40%;
+	background-color: red;
+	border-radius: 15px;
+	text-align: center;
+	height: 45px;
+	font: 35px Courier;
+	color: white;
+}
+
+#tabela {
+	background-color: lavender;
+	margin-left: 15%;
+	margin-right: 15%;
+	font: 20px courier;
+	border-radius: 10px;
+}
