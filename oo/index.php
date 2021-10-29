@@ -39,7 +39,7 @@
 		<table cellpadding="20px" align="center">
 			<tr>
 				<td>
-					<form action="add.php" method="POST">
+					<form action="action/add.php" method="POST">
 						<button type="submit" name="adicionar">Adicionar</button>
 					</form>
 				</td>
