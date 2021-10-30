@@ -6,11 +6,11 @@ require_once 'conn/conexão.php';
 $usu = new conn\Produto();
 $usuDao = new conn\ProdutoDao();
 
-$usu->setTitulo('teste');
-$usu->setDescricao('testeddd');
-$usu->setValor(29);
-
-$usuDao->create($usu);
+$valorTotal = 0;
+if(isset($_POST['btn-apagar'])):
+	$id = $_POST['btn-apagar'];
+	$produtoDao->delete($id);
+endif;
 
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,10 @@ $usuDao->create($usu);
 			<tr>
 				<td>
 					<?php
-						echo "<b>Data: </b>".date('d/m/Y');
+						$fuso = new DateTimeZone('Brazil/West');
+						$data = new DateTime('now');
+						$data->setTimezone($fuso);
+						echo $data->format('d/m/Y');
 					?>
 				</td>
 				<td>
@@ -58,7 +61,14 @@ $usuDao->create($usu);
 					|
 				</td>
 				<td>
-					<b>Valor total a pagar:</b> R$ 
+					<b>Valor total a pagar:</b> R$
+					<?php
+					$valorTot = 0;
+					foreach($usuDao->read() as $v) {
+						$valorTot += $v['valor'];
+					}
+					echo $valorTot;
+					?> 
 				</td>
 			</tr>
 		</table>
@@ -77,6 +87,38 @@ $usuDao->create($usu);
 						<td><b>Prazo</b></td>
 						<td><b>Valor</b></td>
 					</tr>
+
+					<?php
+					$usuDao->read();
+					foreach ($usuDao->read() as $p):
+						if($p['usuario'] == 'me'):
+							if($p['pago'] == 'n'):
+					?>
+							<tr>
+								<td><?php echo $p['titulo']; ?></td>
+								<td><?php echo $p['descricao']; ?></td>
+								<td>
+									<?php
+									$data = DateTime::createFromFormat("Y-m-d", $p['data']);
+									echo $data->format("d/m/Y"); 
+									?>
+								</td>
+								<td><?php echo "R$ ".$p['valor']; ?></td>
+								<td>
+									<form action="edit.php" method="POST">
+										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
+										<br><hr>
+										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
+										<input type="hidden" name="usuario" value="dad">
+									</form>
+								</td>
+							</tr>
+					<?php
+							endif;
+						endif;
+					endforeach;
+					?>
+
 				</table>
 				<hr>
 			</div>

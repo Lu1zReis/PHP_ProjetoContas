@@ -31,7 +31,7 @@
 		<font color="deeppink">Pink</font>
 	</div>
 <hr>
-<form method="POST" action="<?php $_SERVER['PHP_POST']; ?>">
+<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
 	<div id="back">
 		<div id="inside">
 			<table cellspacing="7px" align="center">
@@ -107,12 +107,10 @@ if(isset($_POST['btn-adicionar'])){
 			endif;
 		}
 	}
-	
-	$nome = $_POST['nome'];
-	$usua = $_POST['usuario'];
-
-	$filtrar = new Verifica($nome, $usua);
-
+	if(empty($_POST['usuario'])):
+		$_POST['usuario'] = null;
+	endif;
+	$filtrar = new Verifica($_POST['nome'], $_POST['usuario']);
 	if($filtrar->filtro()):
 		echo "tudo certo";
 	endif;
