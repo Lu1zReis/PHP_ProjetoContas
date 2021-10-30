@@ -1,5 +1,15 @@
 <?php
+require 'conn/usuario.php';
+require 'conn/usuarioDao.php';
 
+$usu = new Produto();
+$usuDao = new ProdutoDao();
+
+$usu->setTitulo('teste');
+$usu->setDescricao('testeddd');
+$usu->setValor(29);
+
+$usuDao->create($usu);
 
 ?>
 <!DOCTYPE html>
@@ -52,7 +62,8 @@
 			</tr>
 		</table>
 		<?php
-		if($_POST['exibirUsu'] == "me" or $_POST['exibirUsu'] == "all"):
+		if(isset($_POST['exibirUsu'])):
+			if($_POST['exibirUsu'] == "me" or $_POST['exibirUsu'] == "all"):
 		?>
 			<div id="me">
 				<h3>Me</h3>
@@ -105,6 +116,9 @@
 				<hr>
 			</div>
 		<?php
+			endif;
+		else:
+			echo "<li>Escolha a tabela de usuário que quer que seja exibida (Me, Mom, Dad ou todos)</li>";
 		endif;
 		?>
 	</div>

@@ -18,9 +18,19 @@
 			text-align: center;
 			font-family: courier;
 		}
+		#geral {
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
+	<div id="geral">
+		<h3>theme</h3>
+		<font color="black" bold><b>Black</b></font>
+		to the 
+		<font color="deeppink">Pink</font>
+	</div>
+<hr>
 <form method="POST" action="<?php $_SERVER['PHP_POST']; ?>">
 	<div id="back">
 		<div id="inside">
@@ -60,6 +70,11 @@
 		</div>
 	</div>
 </form>
+<br><br>
+<center>
+	<a href="../index.php">Cancelar</a>
+</center>
+<br><br>
 </body>
 </html>
 <?php
