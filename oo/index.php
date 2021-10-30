@@ -1,9 +1,10 @@
 <?php
-require 'conn/usuario.php';
-require 'conn/usuarioDao.php';
+require_once 'conn/usuario.php';
+require_once 'conn/usuarioDao.php';
+require_once 'conn/conexão.php';
 
-$usu = new Produto();
-$usuDao = new ProdutoDao();
+$usu = new conn\Produto();
+$usuDao = new conn\ProdutoDao();
 
 $usu->setTitulo('teste');
 $usu->setDescricao('testeddd');

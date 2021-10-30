@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace conn;
 
 class ProdutoDao {
     public function create(Produto $p) {
