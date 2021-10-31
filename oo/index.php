@@ -39,7 +39,7 @@ $usuDao->read();
 					Filtrar:
 					<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" name="c">
 						<select name="exibirUsu">
-							<option value="all">All</option>
+							<option value="all" selected="selected">All</option>
 							<option value="me">Me</option>
 							<option value="mom">Mom</option>
 							<option value="dad">Dad</option>
@@ -110,7 +110,7 @@ $usuDao->read();
 										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
 										<br><hr>
 										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
-										<input type="hidden" name="usuario" value="dad">
+										<input type="hidden" name="usuario" value="me">
 									</form>
 								</td>
 							</tr>
@@ -159,7 +159,7 @@ $usuDao->read();
 										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
 										<br><hr>
 										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
-										<input type="hidden" name="usuario" value="dad">
+										<input type="hidden" name="usuario" value="mom">
 									</form>
 								</td>
 							</tr>
