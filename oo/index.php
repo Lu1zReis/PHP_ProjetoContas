@@ -2,16 +2,16 @@
 require_once 'conn/usuario.php';
 require_once 'conn/usuarioDao.php';
 require_once 'conn/conexão.php';
-
+session_start();
 $usu = new conn\Produto();
 $usuDao = new conn\ProdutoDao();
-
-$valorTotal = 0;
-if(isset($_POST['btn-apagar'])):
-	$id = $_POST['btn-apagar'];
-	$produtoDao->delete($id);
+if(isset($_SESSION['msg'])):
+	echo $_SESSION['msg'];
 endif;
-
+session_unset();
+session_destroy();
+$valorTotal = 0;
+$usuDao->read();
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,7 +65,9 @@ endif;
 					<?php
 					$valorTot = 0;
 					foreach($usuDao->read() as $v) {
-						$valorTot += $v['valor'];
+						if($v['pago'] == 'n'):
+							$valorTot += $v['valor'];
+						endif;
 					}
 					echo $valorTot;
 					?> 
@@ -89,7 +91,6 @@ endif;
 					</tr>
 
 					<?php
-					$usuDao->read();
 					foreach ($usuDao->read() as $p):
 						if($p['usuario'] == 'me'):
 							if($p['pago'] == 'n'):
@@ -105,7 +106,7 @@ endif;
 								</td>
 								<td><?php echo "R$ ".$p['valor']; ?></td>
 								<td>
-									<form action="edit.php" method="POST">
+									<form action="action/edit.php" method="POST">
 										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
 										<br><hr>
 										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
@@ -137,6 +138,37 @@ endif;
 						<td><b>Prazo</b></td>
 						<td><b>Valor</b></td>
 					</tr>
+
+					<?php
+					foreach ($usuDao->read() as $p):
+						if($p['usuario'] == 'mom'):
+							if($p['pago'] == 'n'):
+					?>
+							<tr>
+								<td><?php echo $p['titulo']; ?></td>
+								<td><?php echo $p['descricao']; ?></td>
+								<td>
+									<?php
+									$data = DateTime::createFromFormat("Y-m-d", $p['data']);
+									echo $data->format("d/m/Y"); 
+									?>
+								</td>
+								<td><?php echo "R$ ".$p['valor']; ?></td>
+								<td>
+									<form action="action/edit.php" method="POST">
+										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
+										<br><hr>
+										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
+										<input type="hidden" name="usuario" value="dad">
+									</form>
+								</td>
+							</tr>
+					<?php
+							endif;
+						endif;
+					endforeach;
+					?>
+
 				</table>
 				<hr>
 			</div>
@@ -155,6 +187,37 @@ endif;
 						<td><b>Prazo</b></td>
 						<td><b>Valor</b></td>
 					</tr>
+
+					<?php
+					foreach ($usuDao->read() as $p):
+						if($p['usuario'] == 'dad'):
+							if($p['pago'] == 'n'):
+					?>
+							<tr>
+								<td><?php echo $p['titulo']; ?></td>
+								<td><?php echo $p['descricao']; ?></td>
+								<td>
+									<?php
+									$data = DateTime::createFromFormat("Y-m-d", $p['data']);
+									echo $data->format("d/m/Y"); 
+									?>
+								</td>
+								<td><?php echo "R$ ".$p['valor']; ?></td>
+								<td>
+									<form action="action/edit.php" method="POST">
+										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
+										<br><hr>
+										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
+										<input type="hidden" name="usuario" value="dad">
+									</form>
+								</td>
+							</tr>
+					<?php
+							endif;
+						endif;
+					endforeach;
+					?>
+
 				</table>
 				<hr>
 			</div>

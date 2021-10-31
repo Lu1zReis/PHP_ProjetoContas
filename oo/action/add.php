@@ -1,3 +1,12 @@
+<?php
+require_once '../conn/usuario.php';
+require_once '../conn/usuarioDao.php';
+require_once '../conn/conexão.php';
+session_start();
+$usu = new conn\Produto();
+$usuDao = new conn\ProdutoDao();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +121,20 @@ if(isset($_POST['btn-adicionar'])){
 	endif;
 	$filtrar = new Verifica($_POST['nome'], $_POST['usuario']);
 	if($filtrar->filtro()):
-		echo "tudo certo";
+		$usu->setTitulo($_POST['nome']);
+		$usu->setDescri($_POST['descricao']);
+		$usu->setValor($_POST['valor']);
+		$usu->setData($_POST['data']);
+		$usu->setPago('n');
+		$usu->setUsuario($_POST['usuario']);
+
+		if($usuDao->create($usu) == true):
+			$_SESSION['msg'] = "<li>Nova conta adicionada com sucesso</li>";
+			header('Location: ../index.php');
+		else:
+			$_SESSION['msg'] = "<li>Erro ao adicionar a nova conta</li>";
+			header('Location: ../index.php');
+		endif;
 	endif;
 }
 ?>

@@ -13,7 +13,12 @@ class ProdutoDao {
         $stmt->bindValue(4, $p->getData());
         $stmt->bindValue(5, $p->getPago());
         $stmt->bindValue(6, $p->getUsuario());
-        $stmt->execute();
+
+        if($stmt->execute()):
+            return true;
+        else:
+            return false;
+        endif;
     }
 
     public function read() {
@@ -42,7 +47,11 @@ class ProdutoDao {
         $stmt->bindValue(6, $p->getUsuario());
         $stmt->bindValue(7, $p->getId());
 
-        $stmt->execute();
+        if($stmt->execute()):
+            return true;
+        else:
+            return false;
+        endif;
     }
 
     public function pagar(Produto $p) {
@@ -52,13 +61,21 @@ class ProdutoDao {
         $stmt->bindValue(1, $p->getPago());
         $stmt->bindValue(2, $p->getId());
 
-        $stmt->execute();
+        if($stmt->execute()):
+            return true;
+        else:
+            return false;
+        endif;
     }
 
     public function delete($id) {
         $sql = 'DELETE FROM despesas WHERE id = ?';
         $stmt = Conexão::getConn()->prepare($sql);
         $stmt->bindValue(1, $id);
-        $stmt->execute();
+        if($stmt->execute()):
+            return true;
+        else:
+            return false;
+        endif;
     }
 }
