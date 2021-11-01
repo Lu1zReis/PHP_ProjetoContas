@@ -12,6 +12,9 @@ session_unset();
 session_destroy();
 $valorTotal = 0;
 $usuDao->read();
+if(!isset($_POST['exibirUsu'])):
+	$_POST['exibirUsu'] = "all";
+endif;
 ?>
 <!DOCTYPE html>
 <html>
@@ -72,11 +75,19 @@ $usuDao->read();
 					echo $valorTot;
 					?> 
 				</td>
+				<td>
+					|
+				</td>
+				<td>
+					<form action="pagas.php" method="POST">
+						<button type="submit" name="pagos">Ver contas pagas</button>
+					</form>
+				</td>
 			</tr>
 		</table>
 		<?php
 		if(isset($_POST['exibirUsu'])):
-			if($_POST['exibirUsu'] == "me" or $_POST['exibirUsu'] == "all"):
+			if($_POST['exibirUsu'] == "all"):
 		?>
 			<div id="me">
 				<h3>Me</h3>
@@ -118,14 +129,26 @@ $usuDao->read();
 							endif;
 						endif;
 					endforeach;
+					foreach($usuDao->read() as $v):
+						if($v['usuario'] == "me"):
+							if($v['pago'] == "n"):
+								$h1 += $v['valor']; 
+							endif;
+						endif;
+					endforeach;
 					?>
-
+						<tr>
+							<td><b>Total:</b></td>
+							<td>
+							<?php echo "R$ ".$h1;?>
+							</td>
+						</tr>
 				</table>
 				<hr>
 			</div>
 		<?php
-		endif;
-		if($_POST['exibirUsu'] == "mom" or $_POST['exibirUsu'] == "all"):
+			endif;
+			if($_POST['exibirUsu'] == "all"):
 		?>
 			<div id="mom">
 				<h3>Mom</h3>
@@ -167,14 +190,26 @@ $usuDao->read();
 							endif;
 						endif;
 					endforeach;
+					foreach($usuDao->read() as $v):
+						if($v['usuario'] == "mom"):
+							if($v['pago'] == "n"):
+								$h2 += $v['valor']; 
+							endif;
+						endif;
+					endforeach;
 					?>
-
+						<tr>
+							<td><b>Total:</b></td>
+							<td>
+							<?php echo "R$ ".$h2;?>
+							</td>
+						</tr>
 				</table>
 				<hr>
 			</div>
 		<?php
-		endif;
-		if($_POST['exibirUsu'] == "dad" or $_POST['exibirUsu'] == "all"):
+			endif;
+			if($_POST['exibirUsu'] == "all"):
 		?>
 			<div id="dad">
 				<h3>Dad</h3>
@@ -216,8 +251,82 @@ $usuDao->read();
 							endif;
 						endif;
 					endforeach;
+					foreach($usuDao->read() as $v):
+						if($v['usuario'] == "dad"):
+							if($v['pago'] == "n"):
+								$h3 += $v['valor']; 
+							endif;
+						endif;
+					endforeach;
 					?>
+						<tr>
+							<td><b>Total:</b></td>
+							<td>
+							<?php echo "R$ ".$h3;?>
+							</td>
+						</tr>
+				</table>
+				<hr>
+			</div>
+		<?php
+			endif;
 
+			if($_POST['exibirUsu'] == "me" or $_POST['exibirUsu'] == "mom" or $_POST['exibirUsu'] == "dad"):
+		?>
+			<div id="<?php echo $_POST['exibirUsu']; ?>">
+				<h3><?php echo $_POST['exibirUsu']; ?></h3>
+			</div>
+			<div id="tabela">
+				<table align="center" cellpadding="35" cellspacing="35">
+					<tr>
+						<td><b>Nome</b></td>
+						<td><b>Descrição</b></td>
+						<td><b>Prazo</b></td>
+						<td><b>Valor</b></td>
+					</tr>
+
+					<?php
+					foreach ($usuDao->read() as $p):
+						if($p['usuario'] == $_POST['exibirUsu']):
+							if($p['pago'] == 'n'):
+					?>
+							<tr>
+								<td><?php echo $p['titulo']; ?></td>
+								<td><?php echo $p['descricao']; ?></td>
+								<td>
+									<?php
+									$data = DateTime::createFromFormat("Y-m-d", $p['data']);
+									echo $data->format("d/m/Y"); 
+									?>
+								</td>
+								<td><?php echo "R$ ".$p['valor']; ?></td>
+								<td>
+									<form action="action/edit.php" method="POST">
+										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
+										<br><hr>
+										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
+										<input type="hidden" name="usuario" value="$_POST['exibirUsu']">
+									</form>
+								</td>
+							</tr>
+					<?php
+							endif;
+						endif;
+					endforeach;
+					foreach($usuDao->read() as $v):
+						if($v['usuario'] == $_POST['exibirUsu']):
+							if($v['pago'] == "n"):
+								$h += $v['valor']; 
+							endif;
+						endif;
+					endforeach;
+					?>
+						<tr>
+							<td><b>Total:</b></td>
+							<td>
+							<?php echo "R$ ".$h;?>
+							</td>
+						</tr>
 				</table>
 				<hr>
 			</div>

@@ -133,5 +133,20 @@ endif;
 
 if(isset($_POST['btn-editou'])):
 	echo $_POST['id'];
+		$usu->setTitulo($_POST['nome']);
+		$usu->setDescri($_POST['descricao']);
+		$usu->setValor($_POST['valor']);
+		$usu->setData($_POST['data']);
+		$usu->setPago('n');
+		$usu->setUsuario($_POST['usuario']);
+		$usu->setId($_POST['id']);
+
+		if($usuDao->update($usu) == true):
+			$_SESSION['msg'] = "<li>Conta editada com sucesso</li>";
+			header('Location: ../index.php');
+		else:
+			$_SESSION['msg'] = "<li>Erro ao editar a conta</li>";
+			header('Location: ../index.php');
+		endif;
 endif;
 ?>
