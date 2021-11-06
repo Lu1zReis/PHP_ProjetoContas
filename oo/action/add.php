@@ -50,11 +50,11 @@ $usuDao = new conn\ProdutoDao();
 					<td><input type="name" name="nome" style="width: 190px; border-color: deeppink;"></td>
 				</tr>
 				<tr>
-					<td><b>Valor</b></td>
+					<td><b>Valor:</b></td>
 					<td><input type="name" name="valor" style="width: 190px; border-color: deeppink;"></td>
 				</tr>
 				<tr>
-					<td><b>Prazo:</b></td>
+					<td><b>Data:</b></td>
 					<td><input type="date" name="data" style="width: 193px; border-color: deeppink;"></td>
 				</tr>
 				<tr>

@@ -36,8 +36,8 @@ if(isset($_POST['usuario'])):
 					<style rel type="text/css">
 						#back {
 							background: black;
-							margin-right: 27%;
-							margin-left: 27%;
+							margin-right: 10%;
+							margin-left: 10%;
 							margin-top: 5%;
 							padding-top: 20px;
 							padding-bottom: 20px;
@@ -67,18 +67,18 @@ if(isset($_POST['usuario'])):
 				<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
 					<div id="back">
 						<div id="inside">
-							<table cellspacing="7px" align="center">
+							<table cellspacing="5px" align="center">
 								<caption><b>Adicionar conta</b></caption>
 								<tr>
 									<td><b>Nome:</b></td>
 									<td><input type="name" name="nome" style="width: 190px; border-color: deeppink;" value="<?php echo $u['titulo']; ?>"></td>
 								</tr>
 								<tr>
-									<td><b>Valor</b></td>
+									<td><b>Valor:</b></td>
 									<td><input type="name" name="valor" style="width: 190px; border-color: deeppink;" value="<?php echo $u['valor']; ?>"></td>
 								</tr>
 								<tr>
-									<td><b>Prazo:</b></td>
+									<td><b>Data:</b></td>
 									<td><input type="date" name="data" style="width: 193px; border-color: deeppink;" value="<?php echo $u['data']; ?>"></td>
 								</tr>
 								<tr>

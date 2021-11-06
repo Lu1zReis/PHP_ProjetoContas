@@ -11,6 +11,10 @@ endif;
 session_unset();
 session_destroy();
 $valorTotal = 0;
+$h1 = 0;
+$h2 = 0;
+$h3 = 0;
+$h = 0;
 $usuDao->read();
 if(!isset($_POST['exibirUsu'])):
 	$_POST['exibirUsu'] = "all";
@@ -93,11 +97,11 @@ endif;
 				<h3>Me</h3>
 			</div>
 			<div id="tabela">
-				<table align="center" cellpadding="35" cellspacing="35">
+				<table align="center" cellpadding="30" cellspacing="30">
 					<tr>
 						<td><b>Nome</b></td>
 						<td><b>Descrição</b></td>
-						<td><b>Prazo</b></td>
+						<td><b>Data</b></td>
 						<td><b>Valor</b></td>
 					</tr>
 
@@ -119,7 +123,7 @@ endif;
 								<td>
 									<form action="action/edit.php" method="POST">
 										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
-										<br><hr>
+										<br><br><hr><br>
 										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
 										<input type="hidden" name="usuario" value="me">
 									</form>
@@ -154,11 +158,11 @@ endif;
 				<h3>Mom</h3>
 			</div>
 			<div id="tabela">
-				<table align="center" cellpadding="35" cellspacing="35">
+				<table align="center" cellpadding="30" cellspacing="30">
 					<tr>
 						<td><b>Nome</b></td>
 						<td><b>Descrição</b></td>
-						<td><b>Prazo</b></td>
+						<td><b>Data</b></td>
 						<td><b>Valor</b></td>
 					</tr>
 
@@ -180,7 +184,7 @@ endif;
 								<td>
 									<form action="action/edit.php" method="POST">
 										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
-										<br><hr>
+										<br><br><hr><br>
 										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
 										<input type="hidden" name="usuario" value="mom">
 									</form>
@@ -215,11 +219,11 @@ endif;
 				<h3>Dad</h3>
 			</div>
 			<div id="tabela">
-				<table align="center" cellpadding="35" cellspacing="35">
+				<table align="center" cellpadding="30" cellspacing="30">
 					<tr>
 						<td><b>Nome</b></td>
 						<td><b>Descrição</b></td>
-						<td><b>Prazo</b></td>
+						<td><b>Data</b></td>
 						<td><b>Valor</b></td>
 					</tr>
 
@@ -241,7 +245,7 @@ endif;
 								<td>
 									<form action="action/edit.php" method="POST">
 										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
-										<br><hr>
+										<br><br><hr><br>
 										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
 										<input type="hidden" name="usuario" value="dad">
 									</form>
@@ -277,11 +281,11 @@ endif;
 				<h3><?php echo $_POST['exibirUsu']; ?></h3>
 			</div>
 			<div id="tabela">
-				<table align="center" cellpadding="35" cellspacing="35">
+				<table align="center" cellpadding="30" cellspacing="30">
 					<tr>
 						<td><b>Nome</b></td>
 						<td><b>Descrição</b></td>
-						<td><b>Prazo</b></td>
+						<td><b>Data</b></td>
 						<td><b>Valor</b></td>
 					</tr>
 
@@ -303,7 +307,7 @@ endif;
 								<td>
 									<form action="action/edit.php" method="POST">
 										<button name="btn-editar" type="submit" value="<?php echo $p['id'] ?>">Editar</button>
-										<br><hr>
+										<br><br><hr><br>
 										<button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>">Pago</button>
 										<input type="hidden" name="usuario" value="$_POST['exibirUsu']">
 									</form>
