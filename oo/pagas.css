@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    
+}
+
+body {
+    background: linear-gradient(68.15deg, #6e1414 16.62%, #012485 85.61%);
+    font-size: 100%;
+}
+
+.cabecalho {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 28px;
+}
+.cabecalho-kaka {
+    color: #FFF2E7;
+    font-size: 21px;
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+}
+
+.cabecalho-menu {
+    display: flex;
+    gap: 25px;
+}
+
+.cabecalho-menu-item {
+    color: #FFF2E7;
+    font-size: 18px;
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+}
+
+.filtro {
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+    color: #FFF2E7;
+}
+.filtrar {
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+    font-size: 14px;
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+    color: #2F2325;
+}
+
+.enviar {
+    width: 60px;
+    height: 20px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+    font-size: 14px;
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+    color: #2F2325;
+}
+
+.principal {
+    border-top: 0.5px solid #FFF2E7;
+    margin-bottom: 60px;
+}
+.principal-lista {
+    font-family: 'Righteous', cursive;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+    color: #FFF2E7;
+}
+.usu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 30px;
+    font-family: 'Sarala', sans-serif;
+    color: #FFF2E7; 
+    border-bottom: 0.5px solid #FFF2E7;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+.usuario {
+    font-family: 'Sarala', sans-serif;
+    color: #FFF2E7;
+    gap: 30px; 
+    margin-top: 20px;
+}
+.estatico {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sql {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 12px;
+    margin-right: 20px;
+}
+.descricao {
+    display: flex;
+    align-items: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    background-color: rgb(78, 0, 223);
+    border-radius: 8px;
+}
+
+.botaos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 70%;
+    margin-right: 20%;
+    margin-bottom: 40px;
+}
+.botaos-item {
+    width: 50px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+    font-size: 14px;
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+    color: #2F2325; 
+}

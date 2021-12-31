@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala&display=swap');
+
+/*Esse próximo trecho de marcação é para retirar as coisas que já vem pré formatada no HTML, que pode acabar prejudicando no nosso site*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    
+}
+body {
+    background: linear-gradient(68.15deg, #038096 16.62%, #5dec94 85.61%);
+    font-size: 100%;
+}
+.cabecalho {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 24px;
+}
+.cabecalho-kaka {
+    color: #FFF2E7;
+    font-size: 21px;
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+}
+.cabecalho-menu {
+    display: flex;
+    gap: 25px;
+}
+.cabecalho-menu-item {
+    color: #FFF2E7;
+    font-size: 18px;
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+}
+.principal {
+    border-top: 0.5px solid #FFF2E7;
+    margin-bottom: 60px;
+}
+.secao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    margin-right: 30%;
+    margin-left: 30%;
+    border-top: 0.5px solid #FFF2E7;
+}
+.principal-adicionar {
+    font-family: 'Righteous', cursive;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+    color: #FFF2E7;
+}
+
+.principal-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+.principal-formulario-item {
+    font-size: 24px;
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+    color: #ECD6C4;
+    margin-bottom: 35px;
+}
+.form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 210px;
+}
+.descricao {
+    height: 150px;
+    margin-bottom: -60px;
+}
+.botaos {
+    font-family: 'Righteous', cursive;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.adicionar {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+.adicionar-botao {
+    width: 85px;
+    height: 45px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+    font-size: 14px;
+    font-weight: 400px;
+    font-family: 'Sarala', sans-serif;
+    color: #2F2325; 
+}

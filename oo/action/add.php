@@ -5,87 +5,55 @@ require_once '../conn/conexão.php';
 session_start();
 $usu = new conn\Produto();
 $usuDao = new conn\ProdutoDao();
-
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-	<meta charset="utf-8">
-	<title>Adicionar</title>
-	<style rel type="text/css">
-		#back {
-			background: black;
-			margin-right: 27%;
-			margin-left: 27%;
-			margin-top: 5%;
-			padding-top: 20px;
-			padding-bottom: 20px;
-			border-radius: 10px;
-		}
-		#inside {
-			color: hotpink;
-			text-align: center;
-			font-family: courier;
-		}
-		#geral {
-			text-align: center;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
 </head>
 <body>
-	<div id="geral">
-		<h3>theme</h3>
-		<font color="black" bold><b>Black</b></font>
-		to the 
-		<font color="deeppink">Pink</font>
-	</div>
-<hr>
-<form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
-	<div id="back">
-		<div id="inside">
-			<table cellspacing="7px" align="center">
-				<caption><b>Adicionar conta</b></caption>
-				<tr>
-					<td><b>Nome:</b></td>
-					<td><input type="name" name="nome" style="width: 190px; border-color: deeppink;"></td>
-				</tr>
-				<tr>
-					<td><b>Valor:</b></td>
-					<td><input type="name" name="valor" style="width: 190px; border-color: deeppink;"></td>
-				</tr>
-				<tr>
-					<td><b>Data:</b></td>
-					<td><input type="date" name="data" style="width: 193px; border-color: deeppink;"></td>
-				</tr>
-				<tr>
-					<td><b>Descrição:</b></td>
-					<td><textarea name="descricao" style="margin: 1px; width: 192px; height: 143px; border-color: deeppink;" maxlength="250"></textarea></td>
-				</tr>
-				<tr align="left">
-					<td>Me:</td>
-					<td><input type="radio" name="usuario" value="me"></td>
-				</tr>
-				<tr align="left">
-					<td>Mom:</td>
-					<td><input type="radio" name="usuario" value="mom"></td>
-				</tr>
-				<tr align="left">
-					<td>Dad:</td>
-					<td><input type="radio" name="usuario" value="dad"></td>
-				</tr>
-			</table>
-			<hr>
-			<input type="submit" name="btn-adicionar">
-		</div>
-	</div>
-</form>
-<br><br>
-<center>
-	<a href="../index.php">Cancelar</a>
-</center>
-<br><br>
+    <header class="cabecalho">
+        <a href="../index.php" class="cabecalho-kaka">Kaká</a>
+		<nav class="cabecalho-menu">
+			<a href="../lista.php" class="cabecalho-menu-item">Lista de Contas</a>
+			<a href="../pagas.php" class="cabecalho-menu-item">Contas Pagas</a>
+		</nav>
+    </header>
+
+    <main class="principal">
+        <h1 class="principal-adicionar">Adicionar</h1>
+        <form method="POST" action="<?php $_SERVER['PHP_SELF']; ?>">
+            <nav class="botaos">
+                Me<input type="radio" name="usuario" value="me">
+                Dad<input type="radio" name="usuario" value="dad">
+                Mom<input type="radio" name="usuario" value="mom">
+            </nav>
+            <section class="secao">
+                <div class="principal-formulario">
+                    <h2 class="principal-formulario-item">Nome:</h2>
+                    <h2 class="principal-formulario-item">Valor:</h2>
+                    <h2 class="principal-formulario-item">Data:</h2>
+                    <h2 class="principal-formulario-item">Descrição:</h2>
+                </div>
+                <div class="form">
+                        <input type="name" name="nome">
+                        <input type="name" name="valor">
+                        <input type="date" name="data">
+                        <textarea name="descricao" class="descricao"></textarea>
+                </div>
+            </section>
+            <section class="adicionar">
+                <button type="submit" name="btn-adicionar" class="adicionar-botao">Cadastrar</button>
+            </section>
+        </form>
+    </main>
+
 </body>
 </html>
+
 <?php
 if(isset($_POST['btn-adicionar'])){
 	class Verifica {

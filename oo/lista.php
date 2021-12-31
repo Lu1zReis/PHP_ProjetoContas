@@ -10,39 +10,6 @@ if(!isset($_POST['exibirUsu'])):
 	$_POST['exibirUsu'] = "all";
 endif;
 
-require_once 'conn/usuario.php';
-require_once 'conn/usuarioDao.php';
-require_once 'conn/conexão.php';
-
-session_start();
-
-$usu = new conn\Produto();
-$usuDao = new conn\ProdutoDao();
-$usuDao->read();
-
-if(isset($_POST['btn-apagar'])):
-	if($usuDao->delete($_POST['btn-apagar'])):
-		$_SESSION['msg'] = "<li>Conta deletada com sucesso</li>";
-		header('Location: lista.php');
-	else:
-		$_SESSION['msg'] = "<li>Erro ao deletar a conta</li>";
-		header('Location: lista.php');
-	endif;
-endif;
-
-if(isset($_POST['btn-mudar'])):
-	$id = $_POST['btn-mudar'];
-	$usu->setId($id);
-	$usu->setPago('n');
-	if($usuDao->pagar($usu)):
-		$_SESSION['msg'] = "<li>Valor da conta mudada para: não paga, com sucesso</li>";
-		header('Location: lista.php');
-	else:
-		$_SESSION['msg'] = "<li>Erro ao mudar o valor da conta para: não paga</li>";
-		header('Location: lista.php');
-	endif;
-endif;
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -50,13 +17,13 @@ endif;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista</title>
-    <link rel="stylesheet" type="text/css" href="pagas.css">
+    <link rel="stylesheet" type="text/css" href="lista.css">
 </head>
 <body>
     <header class="cabecalho">
 		<a href="index.php" class="cabecalho-kaka">Kaká</a>
 		<nav class="cabecalho-menu">
-			<a href="lista.php" class="cabecalho-menu-item">Lista de Contas</a>
+			<a href="pagas.php" class="cabecalho-menu-item">Contas Pagas</a>
             <p class="filtro">
                 Filtrar:
 				<form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" name="c">
@@ -76,13 +43,13 @@ endif;
         if($_POST['exibirUsu'] == "all"):
     ?>
         <main class="principal">
-            <h1 class="principal-lista">Pagas</h1>
+            <h1 class="principal-lista">Lista</h1>
             <h2 class="usu">
             Me
             <?php
             $valorTot = 0;
             foreach($usuDao->read() as $v) {
-                if($v['pago'] == 's'):
+                if($v['pago'] == 'n'):
                     if($v['usuario'] == 'me'):
                         $valorTot += $v['valor'];
                     endif;
@@ -100,7 +67,7 @@ endif;
                 <?php
                 foreach ($usuDao->read() as $p):
                     if($p['usuario'] == 'me'):
-                        if($p['pago'] == 's'):
+                        if($p['pago'] == 'n'):
                 ?>
                 <div class="sql">
                     <h3 class="sql-item"><?php echo $p['titulo']; ?></h3>
@@ -114,9 +81,10 @@ endif;
                 </div>
                 <p class="descricao"><?php echo $p['descricao']; ?></p>
                 <div class="botaos">
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                        <button name="btn-apagar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Apagar</button>
-                        <button  name="btn-mudar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Mudar</button>
+                    <form action="action/edit.php" method="POST">
+                        <button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Pago</button>
+                        <button  name="btn-editar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Editar</button>
+                        <input type="hidden" name="usuario" value="me">
                     </form>
                 </div>
                 <?php
@@ -131,7 +99,7 @@ endif;
             <?php
             $valorTot = 0;
             foreach($usuDao->read() as $v) {
-                if($v['pago'] == 's'):
+                if($v['pago'] == 'n'):
                     if($v['usuario'] == 'dad'):
                         $valorTot += $v['valor'];
                     endif;
@@ -149,7 +117,7 @@ endif;
                 <?php
                 foreach ($usuDao->read() as $p):
                     if($p['usuario'] == 'dad'):
-                        if($p['pago'] == 's'):
+                        if($p['pago'] == 'n'):
                 ?>
                 <div class="sql">
                     <h3 class="sql-item"><?php echo $p['titulo']; ?></h3>
@@ -163,9 +131,10 @@ endif;
                 </div>
                 <p class="descricao"><?php echo $p['descricao']; ?></p>
                 <div class="botaos">
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                        <button name="btn-apagar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Apagar</button>
-                        <button  name="btn-mudar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Mudar</button>
+                    <form action="action/edit.php" method="POST">
+                        <button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Pago</button>
+                        <button  name="btn-editar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Editar</button>
+                        <input type="hidden" name="usuario" value="dad">
                     </form>
                 </div>
                 <?php
@@ -180,7 +149,7 @@ endif;
             <?php
             $valorTot = 0;
             foreach($usuDao->read() as $v) {
-                if($v['pago'] == 's'):
+                if($v['pago'] == 'n'):
                     if($v['usuario'] == 'mom'):
                         $valorTot += $v['valor'];
                     endif;
@@ -198,7 +167,7 @@ endif;
                 <?php
                 foreach ($usuDao->read() as $p):
                     if($p['usuario'] == 'mom'):
-                        if($p['pago'] == 's'):
+                        if($p['pago'] == 'n'):
                 ?>
                 <div class="sql">
                     <h3 class="sql-item"><?php echo $p['titulo']; ?></h3>
@@ -212,9 +181,10 @@ endif;
                 </div>
                 <p class="descricao"><?php echo $p['descricao']; ?></p>
                 <div class="botaos">
-                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                        <button name="btn-apagar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Apagar</button>
-                        <button  name="btn-mudar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Mudar</button>
+                    <form action="action/edit.php" method="POST">
+                        <button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Pago</button>
+                        <button  name="btn-editar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Editar</button>
+                        <input type="hidden" name="usuario" value="mom">
                     </form>
                 </div>
                 <?php
@@ -230,7 +200,7 @@ endif;
     if($_POST['exibirUsu'] == "me" or $_POST['exibirUsu'] == "mom" or $_POST['exibirUsu'] == "dad"):
     ?>
         <footer class="principal">
-            <h1 class="principal-lista">Pagas</h1>
+            <h1 class="principal-lista">Lista</h1>
 
             <?php
             if($_POST['exibirUsu'] == "me"):
@@ -240,7 +210,7 @@ endif;
                 <?php
                 $valorTot = 0;
                 foreach($usuDao->read() as $v) {
-                    if($v['pago'] == 's'):
+                    if($v['pago'] == 'n'):
                         if($v['usuario'] == 'me'):
                             $valorTot += $v['valor'];
                         endif;
@@ -258,7 +228,7 @@ endif;
                     <?php
                     foreach ($usuDao->read() as $p):
                         if($p['usuario'] == 'me'):
-                            if($p['pago'] == 's'):
+                            if($p['pago'] == 'n'):
                     ?>
                     <div class="sql">
                         <h3 class="sql-item"><?php echo $p['titulo']; ?></h3>
@@ -272,9 +242,10 @@ endif;
                     </div>
                     <p class="descricao"><?php echo $p['descricao']; ?></p>
                     <div class="botaos">
-                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                            <button name="btn-apagar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Apagar</button>
-                            <button  name="btn-mudar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Mudar</button>
+                        <form action="action/edit.php" method="POST">
+                            <button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Pago</button>
+                            <button  name="btn-editar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Editar</button>
+                            <input type="hidden" name="usuario" value="me">
                         </form>
                     </div>
                     <?php
@@ -291,7 +262,7 @@ endif;
                 <?php
                 $valorTot = 0;
                 foreach($usuDao->read() as $v) {
-                    if($v['pago'] == 's'):
+                    if($v['pago'] == 'n'):
                         if($v['usuario'] == 'dad'):
                             $valorTot += $v['valor'];
                         endif;
@@ -309,7 +280,7 @@ endif;
                     <?php
                     foreach ($usuDao->read() as $p):
                         if($p['usuario'] == 'dad'):
-                            if($p['pago'] == 's'):
+                            if($p['pago'] == 'n'):
                     ?>
                     <div class="sql">
                         <h3 class="sql-item"><?php echo $p['titulo']; ?></h3>
@@ -323,9 +294,10 @@ endif;
                     </div>
                     <p class="descricao"><?php echo $p['descricao']; ?></p>
                     <div class="botaos">
-                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                            <button name="btn-apagar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Apagar</button>
-                            <button  name="btn-mudar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Mudar</button>
+                        <form action="action/edit.php" method="POST">
+                            <button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Pago</button>
+                            <button  name="btn-editar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Editar</button>
+                            <input type="hidden" name="usuario" value="dad">
                         </form>
                     </div>
                     <?php
@@ -342,7 +314,7 @@ endif;
                 <?php
                 $valorTot = 0;
                 foreach($usuDao->read() as $v) {
-                    if($v['pago'] == 's'):
+                    if($v['pago'] == 'n'):
                         if($v['usuario'] == 'mom'):
                             $valorTot += $v['valor'];
                         endif;
@@ -360,7 +332,7 @@ endif;
                     <?php
                     foreach ($usuDao->read() as $p):
                         if($p['usuario'] == 'mom'):
-                            if($p['pago'] == 's'):
+                            if($p['pago'] == 'n'):
                     ?>
                     <div class="sql">
                         <h3 class="sql-item"><?php echo $p['titulo']; ?></h3>
@@ -374,9 +346,10 @@ endif;
                     </div>
                     <p class="descricao"><?php echo $p['descricao']; ?></p>
                     <div class="botaos">
-                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-                            <button name="btn-apagar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Apagar</button>
-                            <button  name="btn-mudar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Mudar</button>
+                        <form action="action/edit.php" method="POST">
+                            <button name="btn-pagou" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Pago</button>
+                            <button  name="btn-editar" type="submit" value="<?php echo $p['id'] ?>" class="botaos-item">Editar</button>
+                            <input type="hidden" name="usuario" value="mom">
                         </form>
                     </div>
                     <?php
