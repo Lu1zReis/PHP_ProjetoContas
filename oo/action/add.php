@@ -78,7 +78,7 @@ if(isset($_POST['btn-adicionar'])){
 			if(!empty($this->erros)):
 				foreach ($this->erros as $erro) {
 					echo $erro;
-				}
+0				}
 			else:
 				return true;
 			endif;
